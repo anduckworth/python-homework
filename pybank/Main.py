@@ -51,18 +51,18 @@ df['Difference of P/L and Shifted'] = df['Profit/Losses'] - df['P/L Shifted']
 df.head(10)
 
 
-# In[10]:
+# In[12]:
 
 
 average = df['Difference of P/L and Shifted'].mean()
 maximum_increase_profits = df['Difference of P/L and Shifted'].max()
 maximum_increase_losses = df['Difference of P/L and Shifted'].min()
-print(average)
-print(maximum_increase_profits)
-print(maximum_increase_losses)
+#print(f'average|{average}')
+#print(f'max|{maximum_increase_profits}')
+#print(f'min|{maximum_increase_losses}')
 
 
-# In[11]:
+# In[13]:
 
 
 print('Financial Analysis')
@@ -72,6 +72,12 @@ print(f'Total Profits/Losses: ${total_profits_losses}')
 print(f'Average Change: ${average}')
 print(f'Greatest Increase In Profits: ${maximum_increase_profits}')
 print(f'Greates Decrease In Profits: ${maximum_increase_losses}')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

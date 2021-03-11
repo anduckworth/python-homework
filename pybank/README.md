@@ -1,0 +1,1 @@
+In this activity, I read in the csv (budget_data). Using Pandas, I found the total number of months, the net P/L over the time period of the dataframe, the average changes in P/L, the greatest increase in profits, and the greatest decrease in profits.
