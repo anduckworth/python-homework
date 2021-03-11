@@ -1,0 +1,79 @@
+Whale Portfolios and Algorithmic Strategies Performance
+----------------------------------------------------------------------------------------------------
+All portfolios outperformed the S&P 500 index over time.
+
+The Berkshire and Tiger portfolios are both riskier than the S&P 500 index.
+    S&P 500 standard deviation| 0.0086
+    Berkshire Hathaway standard deviation| 0.0129
+    Tiger Global Management standard deviation| 0.0109
+
+The annualized standard deviations of all portfolios:
+   S&P 500| 0.1358
+   Soros Fund Management| 0.1253, 
+   Paulson & Co| 0.1115
+   Tiger Gloabal Management| 0.1729
+   Berkshire Hathaway| 0.2051
+   Algo 1| 0.121
+   Algo 2| 0.1324
+
+In general the portfolios did not mimic the sp500. This is a good thing, because during the given time frame, 
+the sp500 index had a negative cummulative return. Therefore, while the market went down, 
+these portfolios increased in value. This means that the other portfolios had a stong negative correlation with the S&P 500. 
+
+The Beta of the Soros portfolio is 0.773375354779462
+
+The Sharpe Ratios of All Portfolios: 
+    S&P 500| 0.6483
+    Soros Fund Management| 0.3564
+    Paulson & Co| -0.4836
+    Tiger Global Management| -0.1211
+    Berkshire Hathaway| 0.6218
+    Algo 1| 1.3786
+    Algo 2| 0.5014
+
+
+The algorithmic studies both outperformed the S&P 500 index. Their Sharpe Ratios were highly positive, which means they had greater returns with less risk. 
+They did not, however, outperform all of the portfolios. The Berkshire Hathaway portfolio had a greater Sharpe 
+Ratio than Algorithmic Strategy 2. Overall, we can say that Algorithmic Strategy 1 had the greatest risk adjusted
+returns.
+
+My Portfolio Performance Compared to the Whale Portfolios and Algorithmic Strategies
+----------------------------------------------------------------------------------------------------
+The annualized standard deviations of all portfolios including my portfolio:
+    S&P 500| 0.1521
+    My Portfolio| 0.2115
+    Soros Fund Management| 0.1467
+    Paulson & Co| 0.1167
+    Tiger Global Management| 0.2325
+    Berkshire Hathaway| 0.2472
+    Algo 1| 0.1337
+    Algo 2| 0.1396
+
+In this set there is a strong positive correlation to the S&P 500 for most of the portfolios except Algo 1. 
+This is most likely due to the decreased time frame of the dataset. Only a portion of the initial data set 
+for the whales is included to compare to my portfolio.
+
+Beta of the My Portfolio : 1.5206914487312384
+
+The Sharpe Ratios of all the portfolios including My Portfolio:
+    S&P 500| 0.5848
+    My Portfolio| 0.9331
+    Soros Fund Management| 0.4307
+    Paulson & Co| 0.2587
+    Tiger Global Management| -1.0342
+    Berkshire Hathaway| 0.1598
+    Algo 1| 2.0357
+    Algo 2| 0.0806
+
+My portfolio performed well compared to the other portfolios. This can be seen first in the comparison of the beta
+from the Soros Fund Management portfolio and My portfolio. The beta in my portfolio is signficantly greater than the Soros 
+beta, which means that when the market as a while goes up, or enters a bull phase, my portfolio benefits from the volatility
+to the upside. This is subjective of whether or not the holder of the portfolio can stomach the risk of volatility
+swings to the upside. Generally speaking it could be wonderful to benefit from the upside potental of the market,
+but a well diversified portfolio doesn't necessarily want to correlate with the market all the time, especially
+when the market goes down. We can also see that the annualized standard deviation of my portfolio was among the 
+highest, and it was greater than the S&P 500, indicating that holding my portfolio could be riskier than just holding the index.
+The sharpe ratio for my portfolio was 0.9331, which is good. A higher Sharpe Ratio
+indicates greater risk adjusted returns. The Sharpe Ratio of my portfolio overall was second highest, being beat only 
+by Algo 1. For the period of time encompassed by thid data frame, I would say this portfolio performed well, especially
+on a risk adjusted basis.
