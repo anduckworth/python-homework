@@ -6,7 +6,7 @@
 # 
 #  In this assignment, you'll get to use what you've learned this week to evaluate the performance among various algorithmic, hedge, and mutual fund portfolios and compare them against the S&P 500 Index.
 
-# In[559]:
+# In[42]:
 
 
 # Initial imports
@@ -34,7 +34,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # 
 # Read the Whale Portfolio daily returns and clean the data
 
-# In[560]:
+# In[43]:
 
 
 # Reading whale returns
@@ -42,21 +42,21 @@ whale_returns = pd.read_csv('whale_returns.csv', index_col ='Date', parse_dates=
 whale_returns = whale_returns.sort_index()
 
 
-# In[561]:
+# In[44]:
 
 
 # Count nulls
 whale_returns.isna().sum()
 
 
-# In[562]:
+# In[45]:
 
 
 # Drop nulls
 whale_returns = whale_returns.dropna()
 
 
-# In[563]:
+# In[46]:
 
 
 whale_returns.isna().sum()
@@ -66,7 +66,7 @@ whale_returns.isna().sum()
 # 
 # Read the algorithmic daily returns and clean the data
 
-# In[564]:
+# In[47]:
 
 
 # Reading algorithmic returns
@@ -74,21 +74,21 @@ algo_returns = pd.read_csv('algo_returns.csv', index_col ='Date', parse_dates=Tr
 algo_returns = algo_returns.sort_index()
 
 
-# In[565]:
+# In[48]:
 
 
 # Count nulls
 algo_returns.isna().sum()
 
 
-# In[566]:
+# In[49]:
 
 
 # Drop nulls
 algo_returns = algo_returns.dropna()
 
 
-# In[567]:
+# In[50]:
 
 
 algo_returns.isna().sum()
@@ -98,7 +98,7 @@ algo_returns.isna().sum()
 # 
 # Read the S&P 500 historic closing prices and create a new daily returns DataFrame from the data. 
 
-# In[568]:
+# In[51]:
 
 
 # Reading S&P 500 Closing Prices
@@ -106,59 +106,59 @@ sp500_history = pd.read_csv('sp500_history.csv', index_col ='Date', parse_dates=
 sp500_history = sp500_history.sort_index()
 
 
-# In[569]:
+# In[52]:
 
 
 sp500_history.isna().sum()
 
 
-# In[570]:
+# In[53]:
 
 
 # Check Data Types
 sp500_history.dtypes
 
 
-# In[571]:
+# In[54]:
 
 
 # Fix Data Types
 sp500_history['Close'] = sp500_history['Close'].str.replace("$",' ')
 
 
-# In[572]:
+# In[55]:
 
 
 sp500_history['Close']
 
 
-# In[573]:
+# In[56]:
 
 
 sp500_history = sp500_history.astype(float)
 
 
-# In[574]:
+# In[57]:
 
 
 sp500_history.dtypes
 
 
-# In[575]:
+# In[58]:
 
 
 # Rename `Close` Column to be specific to this portfolio.
 sp500_history.columns = ['sp500_close']
 
 
-# In[576]:
+# In[59]:
 
 
 # Calculate Daily Returns
 sp500_history['sp_500_returns'] = sp500_history['sp500_close'].pct_change()
 
 
-# In[577]:
+# In[60]:
 
 
 # Drop nulls
@@ -168,7 +168,7 @@ sp500_history.isna().sum()
 
 # ## Combine Whale, Algorithmic, and S&P 500 Returns
 
-# In[578]:
+# In[61]:
 
 
 # Join Whale Returns, Algorithmic Returns, and the S&P 500 Returns into a single DataFrame with columns for each portfolio's returns.
@@ -178,13 +178,13 @@ whale_combined = pd.concat([whale_returns, sp500_history, algo_returns], axis=1,
 whale_combined.columns = ['soros', 'paulson', 'tiger', 'berkshire','sp500_close', 'sp500_returns', 'Algo_1', 'Algo_2']
 
 
-# In[579]:
+# In[62]:
 
 
 whale_combined_returns = whale_combined.drop('sp500_close', axis=1)
 
 
-# In[580]:
+# In[63]:
 
 
 whale_combined_returns = whale_combined_returns.sort_index()
@@ -201,7 +201,7 @@ whale_combined_returns
 # 
 # #### Calculate and Plot the daily returns.
 
-# In[581]:
+# In[64]:
 
 
 # Plot daily returns of all portfolios
@@ -210,7 +210,7 @@ whale_combined_returns.plot(figsize=(20,10))
 
 # #### Calculate and Plot cumulative returns.
 
-# In[582]:
+# In[65]:
 
 
 # Calculate cumulative returns of all portfolios
@@ -221,6 +221,8 @@ whale_cumulative_returns.plot(figsize=(20,10))
 
 
 # ## Does any portfolio outperform the S&P 500?
+# 
+# Berkshire and Algo 1 outperform the S&P
 
 # ---
 
@@ -236,7 +238,7 @@ whale_cumulative_returns.plot(figsize=(20,10))
 # ### Create a box plot for each portfolio
 # 
 
-# In[583]:
+# In[66]:
 
 
 # Box plot to visually show risk
@@ -245,7 +247,7 @@ boxplot = whale_combined_returns.boxplot(['soros', 'paulson', 'tiger', 'berkshir
 
 # ### Calculate Standard Deviations
 
-# In[584]:
+# In[67]:
 
 
 # Calculate the daily standard deviations of all portfolios
@@ -255,7 +257,7 @@ standard_dev_all
 
 # ### Determine which portfolios are riskier than the S&P 500
 
-# In[585]:
+# In[68]:
 
 
 # Calculate  the daily standard deviation of S&P 500
@@ -265,7 +267,7 @@ standard_dev_all.sort_values(ascending=False)
 
 # ### Calculate the Annualized Standard Deviation
 
-# In[586]:
+# In[69]:
 
 
 # Calculate the annualized standard deviation (252 trading days)
@@ -285,7 +287,7 @@ standard_dev_annualized.sort_values(ascending=False)
 
 # ### Calculate and plot rolling `std` for all portfolios with 21-day window
 
-# In[587]:
+# In[70]:
 
 
 # Calculate the rolling standard deviation for all portfolios using a 21-day window
@@ -298,7 +300,7 @@ ax.legend(['soros', 'paulson', 'tiger', 'berkshire', 'sp500_returns', 'Algo_1', 
 
 # ### Calculate and plot the correlation
 
-# In[588]:
+# In[71]:
 
 
 # Calculate the correlation
@@ -307,7 +309,7 @@ whale_correlation = whale_combined_returns.corr()
 whale_correlation
 
 
-# In[589]:
+# In[72]:
 
 
 sns.heatmap(whale_correlation, vmin=-1, vmax=1)
@@ -315,7 +317,7 @@ sns.heatmap(whale_correlation, vmin=-1, vmax=1)
 
 # ### Calculate and Plot Beta for a chosen portfolio and the S&P 500
 
-# In[590]:
+# In[73]:
 
 
 # Calculate covariance of a single portfolio  !!!!!!!
@@ -340,14 +342,12 @@ ax.legend(['Soros'])
 # 
 # An alternative way to calculate a rolling window is to take the exponentially weighted moving average. This is like a moving window average, but it assigns greater importance to more recent observations. Try calculating the [`ewm`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.ewm.html) with a 21-day half-life.
 
-# In[591]:
+# In[74]:
 
 
 # Use `ewm` to calculate the rolling window
 whale_combined_ewm = whale_combined_returns.ewm(halflife=21).mean()
 whale_combined_ewm
-#ax = whale_combined_ewm.plot(figsize=(10,20), title = 'Exponentially Weighted Average of All Portfolios')
-#ax.legend(['soros', 'paulson', 'tiger', 'berkshire', 'sp500_returns', 'Algo_1','Algo_2'])
 
 
 # ---
@@ -357,7 +357,7 @@ whale_combined_ewm
 # 
 # ### Using the daily returns, calculate and visualize the Sharpe ratios using a bar plot
 
-# In[592]:
+# In[75]:
 
 
 # Annualized Sharpe Ratios
@@ -365,7 +365,7 @@ whale_combined_returns_sharpe = ((whale_combined_returns.mean()*252)/ (whale_com
 whale_combined_returns_sharpe
 
 
-# In[593]:
+# In[76]:
 
 
 # Visualize the sharpe ratios as a bar plot
@@ -374,6 +374,7 @@ whale_combined_returns_sharpe.plot(kind='bar', title='Sharpe Ratios of All Portf
 
 # ### Determine whether the algorithmic strategies outperform both the market (S&P 500) and the whales portfolios.
 # 
+# Only algo 1 outperformed all other portfolios and the market.
 
 # ---
 
@@ -397,7 +398,7 @@ whale_combined_returns_sharpe.plot(kind='bar', title='Sharpe Ratios of All Portf
 # 
 # * `COST` - [Costco Wholesale Corporation](https://en.wikipedia.org/wiki/Costco)
 
-# In[594]:
+# In[77]:
 
 
 # Reading data from 1st stock
@@ -407,7 +408,7 @@ goog.sort_index()
 goog
 
 
-# In[595]:
+# In[78]:
 
 
 # Reading data from 2nd stock
@@ -416,7 +417,7 @@ aapl.sort_index()
 aapl
 
 
-# In[596]:
+# In[79]:
 
 
 # Reading data from 3rd stock
@@ -425,7 +426,7 @@ cost.sort_index()
 cost
 
 
-# In[597]:
+# In[80]:
 
 
 # Combine all stocks in a single DataFrame
@@ -433,7 +434,7 @@ portfolio = pd.concat([goog,aapl,cost], axis=0, join='inner')
 portfolio
 
 
-# In[598]:
+# In[81]:
 
 
 # Reset Date index
@@ -441,7 +442,7 @@ portfolio=portfolio.reset_index()
 portfolio.head()
 
 
-# In[599]:
+# In[82]:
 
 
 # Reorganize portfolio data by having a column per symbol
@@ -450,7 +451,7 @@ portfolio.sort_index()
 portfolio
 
 
-# In[600]:
+# In[83]:
 
 
 # Calculate daily returns
@@ -464,7 +465,7 @@ all_returns
 
 # ## Calculate the weighted returns for the portfolio assuming an equal number of shares for each stock
 
-# In[601]:
+# In[84]:
 
 
 # Set weights
@@ -478,7 +479,7 @@ portfolio_returns.head()
 
 # ## Join your portfolio returns to the DataFrame that contains all of the portfolio returns
 
-# In[602]:
+# In[85]:
 
 
 # Join your returns DataFrame to the original returns DataFrame
@@ -487,7 +488,7 @@ whale_combined_returns.sort_index()
 whale_combined_returns
 
 
-# In[603]:
+# In[86]:
 
 
 # Only compare dates where return data exists for all the stocks (drop NaNs)
@@ -500,7 +501,7 @@ whale_combined_returns
 
 # ### Calculate the Annualized Standard Deviation
 
-# In[604]:
+# In[87]:
 
 
 # Calculate the annualized `std`
@@ -511,7 +512,7 @@ annualized_std_myp.sort_values(ascending=False)
 
 # ### Calculate and plot rolling `std` with 21-day window
 
-# In[605]:
+# In[88]:
 
 
 # Calculate rolling standard deviation
@@ -524,7 +525,7 @@ ax.legend(['soros', 'paulson', 'tiger', 'berkshire', 'sp500_returns', 'Algo_1', 
 
 # ### Calculate and plot the correlation
 
-# In[606]:
+# In[89]:
 
 
 # Calculate and plot the correlation
@@ -534,7 +535,7 @@ sns.heatmap(correlation, vmin=-1, vmax=1)
 
 # ### Calculate and Plot Rolling 60-day Beta for Your Portfolio compared to the S&P 500
 
-# In[607]:
+# In[90]:
 
 
 # Calculate and plot Beta
@@ -553,7 +554,7 @@ ax.legend(['Portfolio'])
 
 # ### Using the daily returns, calculate and visualize the Sharpe ratios using a bar plot
 
-# In[608]:
+# In[91]:
 
 
 # Calculate Annualzied Sharpe Ratios
@@ -562,7 +563,7 @@ portfolio_sharpe = ((whale_combined_returns.mean()*252)/ (whale_combined_returns
 portfolio_sharpe
 
 
-# In[609]:
+# In[92]:
 
 
 # Visualize the sharpe ratios as a bar plot
@@ -571,14 +572,14 @@ portfolio_sharpe.plot(kind='bar', title='Portfolio Sharpe Ratios')
 
 # ### How does your portfolio do?
 # 
-# Write your answer here!
+# My portfolio did better than all other portfolios on a risk adjusted basis except for Algo 1.
 
-# In[610]:
+# In[93]:
 
 
 print('Whale Portfolios and Algorithmic Strategies Performance')
 print("-"*100)
-print(f'All portfolios outperformed the S&P 500 index over time.')
+print(f'Berkshire and Algo 1 outperform the S&P.')
 print('')
 print(f'''The Berkshire and Tiger portfolios are both riskier than the S&P 500 index.
     S&P 500 standard deviation| {round(standard_dev_all['sp500_returns'], 4)}
@@ -600,7 +601,8 @@ these portfolios increased in value. This means that the other portfolios had a 
 print('')
 print(f'The Beta of the Soros portfolio is {beta_whale_returns}')
 print('')
-print(f'''The Sharpe Ratios of All Portfolios: 
+print(f'''Only Algo 1 outperformed all other portfolios and the S&P 500
+    The Sharpe Ratios of All Portfolios: 
     S&P 500| {round(whale_combined_returns_sharpe['sp500_returns'], 4)}
     Soros Fund Management| {round(whale_combined_returns_sharpe['soros'], 4)}
     Paulson & Co| {round(whale_combined_returns_sharpe['paulson'], 4)}
@@ -645,7 +647,7 @@ print(f'''The Sharpe Ratios of all the portfolios including My Portfolio:
 print('')
 print(f"""My portfolio performed well compared to the other portfolios. This can be seen first in the comparison of the beta
 from the Soros Fund Management portfolio and My portfolio. The beta in my portfolio is signficantly greater than the Soros 
-beta, which means that when the market as a while goes up, or enters a bull phase, my portfolio benefits from the volatility
+beta, which means that when the market as a whole goes up, or enters a bull phase, my portfolio benefits from the volatility
 to the upside. This is subjective of whether or not the holder of the portfolio can stomach the risk of volatility
 swings to the upside. Generally speaking it could be wonderful to benefit from the upside potental of the market,
 but a well diversified portfolio doesn't necessarily want to correlate with the market all the time, especially
@@ -656,6 +658,18 @@ indicates greater risk adjusted returns. The Sharpe Ratio of my portfolio overal
 by Algo 1. For the period of time encompassed by thid data frame, I would say this portfolio performed well, especially
 on a risk adjusted basis.
 """)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
